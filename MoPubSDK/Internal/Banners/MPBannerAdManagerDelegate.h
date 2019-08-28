@@ -23,7 +23,7 @@
 - (void)invalidateContentView;
 
 - (void)managerDidLoadAd:(UIView *)ad;
-- (void)managerDidFailToLoadAd;
+- (void)managerDidFailToLoadAdWithError:(NSError *)error;
 - (void)userActionWillBegin;
 - (void)userActionDidFinish;
 - (void)userWillLeaveApplication;

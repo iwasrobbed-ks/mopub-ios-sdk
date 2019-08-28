@@ -276,7 +276,7 @@
 
 - (void)didFailToLoadAdapterWithError:(NSError *)error
 {
-    [self.delegate managerDidFailToLoadAd];
+    [self.delegate managerDidFailToLoadAdWithError: error];
     [self scheduleRefreshTimer];
 
     MPLogError(@"Banner view (%@) failed. Error: %@", [self.delegate adUnitId], error);
