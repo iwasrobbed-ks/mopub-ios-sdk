@@ -109,7 +109,7 @@
 
         // We don't want to remotely log this event -- it's simply for publisher troubleshooting -- so use NSLog
         // rather than MPLog.
-        NSLog(@"%@", error.localizedDescription);
+        // NSLog(@"%@", error.localizedDescription);
         [self.delegate rewardedVideoDidFailToPlayForAdManager:self error:error];
         return;
     }

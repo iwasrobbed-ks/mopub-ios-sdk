@@ -22,7 +22,7 @@
 }
 
 - (void)logMessage:(NSString *)message {
-    NSLog(@"%@", message);
+    // NSLog(@"%@", message);
 }
 
 @end
