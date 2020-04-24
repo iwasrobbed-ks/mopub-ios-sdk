@@ -53,18 +53,20 @@ NSString * const kUserDefaultsUserAgentKey = @"com.mopub.mopub-ios-sdk.user-agen
                       deviceType, deviceType, systemVersion];
     }
 
-    dispatch_async(dispatch_get_main_queue(), ^{
-        gWkWebView = [WKWebView new]; // `WKWebView` must be created in main thread
-        [gWkWebView evaluateJavaScript:@"navigator.userAgent" completionHandler:^(id _Nullable result, NSError * _Nullable error) {
-            if (error != nil) {
-                MPLogInfo(@"%@ error: %@", NSStringFromSelector(_cmd), error);
-            } else if ([result isKindOfClass:NSString.class]) {
-                gUserAgent = result;
-                [NSUserDefaults.standardUserDefaults setValue:result forKeyPath:kUserDefaultsUserAgentKey];
-            }
-            gWkWebView = nil;
-        }];
-    });
+    // See https://github.com/mopub/mopub-ios-sdk/issues/317
+    //
+    // dispatch_async(dispatch_get_main_queue(), ^{
+    //     gWkWebView = [WKWebView new]; // `WKWebView` must be created in main thread
+    //     [gWkWebView evaluateJavaScript:@"navigator.userAgent" completionHandler:^(id _Nullable result, NSError * _Nullable error) {
+    //         if (error != nil) {
+    //             MPLogInfo(@"%@ error: %@", NSStringFromSelector(_cmd), error);
+    //         } else if ([result isKindOfClass:NSString.class]) {
+    //             gUserAgent = result;
+    //             [NSUserDefaults.standardUserDefaults setValue:result forKeyPath:kUserDefaultsUserAgentKey];
+    //         }
+    //         gWkWebView = nil;
+    //     }];
+    // });
 }
 
 + (NSString *)userAgent {
