@@ -1,7 +1,7 @@
 //
 //  MPBannerCustomEventAdapter+Testing.m
 //
-//  Copyright 2018-2019 Twitter, Inc.
+//  Copyright 2018-2020 Twitter, Inc.
 //  Licensed under the MoPub SDK License Agreement
 //  http://www.mopub.com/legal/sdk-license-agreement/
 //
@@ -13,8 +13,10 @@
 #pragma clang diagnostic ignored "-Wincomplete-implementation"
 @implementation MPBannerCustomEventAdapter (Testing)
 
+@dynamic analyticsTracker;
 @dynamic configuration;
 @dynamic bannerCustomEvent;
+@dynamic hasTrackedClick;
 @dynamic hasTrackedImpression;
 
 - (void)loadAdWithConfiguration:(MPAdConfiguration *)configuration customEvent:(MPBannerCustomEvent *)customEvent {

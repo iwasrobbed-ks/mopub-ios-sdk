@@ -1,7 +1,7 @@
 //
 //  MPBaseBannerAdapter.m
 //
-//  Copyright 2018-2019 Twitter, Inc.
+//  Copyright 2018-2020 Twitter, Inc.
 //  Licensed under the MoPub SDK License Agreement
 //  http://www.mopub.com/legal/sdk-license-agreement/
 //
@@ -20,6 +20,7 @@
 
 @property (nonatomic, strong) MPAdConfiguration *configuration;
 @property (nonatomic, strong) MPTimer *timeoutTimer;
+@property (nonatomic, strong) id<MPAnalyticsTracker> analyticsTracker;
 
 - (void)startTimeoutTimer;
 
@@ -33,6 +34,7 @@
 {
     if (self = [super init]) {
         self.delegate = delegate;
+        self.analyticsTracker = [MPAnalyticsTracker sharedTracker];
     }
     return self;
 }
@@ -106,12 +108,12 @@
 
 - (void)trackImpression
 {
-    [[MPAnalyticsTracker sharedTracker] trackImpressionForConfiguration:self.configuration];
+    [self.analyticsTracker trackImpressionForConfiguration:self.configuration];
 }
 
 - (void)trackClick
 {
-    [[MPAnalyticsTracker sharedTracker] trackClickForConfiguration:self.configuration];
+    [self.analyticsTracker trackClickForConfiguration:self.configuration];
 }
 
 @end

@@ -1,19 +1,22 @@
 //
 //  MPBannerCustomEventAdapter+Testing.h
 //
-//  Copyright 2018-2019 Twitter, Inc.
+//  Copyright 2018-2020 Twitter, Inc.
 //  Licensed under the MoPub SDK License Agreement
 //  http://www.mopub.com/legal/sdk-license-agreement/
 //
 
 #import <Foundation/Foundation.h>
+#import "MPAnalyticsTracker.h"
 #import "MPBannerCustomEventAdapter.h"
 
 @interface MPBannerCustomEventAdapter (Testing)
 
 @property (nonatomic, strong) MPBannerCustomEvent *bannerCustomEvent;
 @property (nonatomic, strong) MPAdConfiguration *configuration;
+@property (nonatomic, assign) BOOL hasTrackedClick;
 @property (nonatomic, assign) BOOL hasTrackedImpression;
+@property (nonatomic, strong) id<MPAnalyticsTracker> analyticsTracker;
 
 - (void)loadAdWithConfiguration:(MPAdConfiguration *)configuration customEvent:(MPBannerCustomEvent *)customEvent;
 - (void)setHasTrackedImpression:(BOOL)hasTrackedImpression;

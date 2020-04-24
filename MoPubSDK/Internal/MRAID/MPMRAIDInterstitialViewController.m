@@ -1,7 +1,7 @@
 //
 //  MPMRAIDInterstitialViewController.m
 //
-//  Copyright 2018-2019 Twitter, Inc.
+//  Copyright 2018-2020 Twitter, Inc.
 //  Licensed under the MoPub SDK License Agreement
 //  http://www.mopub.com/legal/sdk-license-agreement/
 //
@@ -86,24 +86,6 @@
 }
 
 #pragma mark - MRControllerDelegate
-
-- (CLLocation *)location
-{
-    if ([self.delegate respondsToSelector:@selector(location)]) {
-        return [self.delegate location];
-    }
-    return nil;
-}
-
-- (NSString *)adUnitId
-{
-    return [self.delegate adUnitId];
-}
-
-- (MPAdConfiguration *)adConfiguration
-{
-    return self.configuration;
-}
 
 - (UIViewController *)viewControllerForPresentingModalView
 {
