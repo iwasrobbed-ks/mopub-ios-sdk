@@ -51,7 +51,7 @@
     if ([NSThread isMainThread]) {
         mainThreadOperation();
     } else {
-        dispatch_sync(dispatch_get_main_queue(), mainThreadOperation);
+        dispatch_async(dispatch_get_main_queue(), mainThreadOperation);
     }
 
     return timer;
