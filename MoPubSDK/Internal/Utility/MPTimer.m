@@ -43,13 +43,13 @@
     void (^mainThreadOperation)(void) = ^void(void) {
         // Initialize the internal `NSTimer`, but set its fire date in the far future.
         // `scheduleNow` will handle the firing of the timer.
-        let nsTimer = [NSTimer timerWithTimeInterval:seconds
-                                              target:timer
-                                            selector:@selector(timerDidFire)
-                                            userInfo:nil
-                                             repeats:repeats];
+        NSTimer *nsTimer = [NSTimer timerWithTimeInterval:seconds
+                                                   target:timer
+                                                 selector:@selector(timerDidFire)
+                                                 userInfo:nil
+                                                  repeats:repeats];
         [nsTimer setFireDate:NSDate.distantFuture];
-        timer.timer = nsTimer
+        timer.timer = nsTimer;
         [NSRunLoop.mainRunLoop addTimer:nsTimer forMode:runLoopMode];
     };
 
