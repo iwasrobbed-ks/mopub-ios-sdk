@@ -37,20 +37,20 @@
     timer.isRepeatingTimer = repeats;
     timer.timeInterval = seconds;
 
-    // Initialize the internal `NSTimer`, but set its fire date in the far future.
-    // `scheduleNow` will handle the firing of the timer.
-    timer.timer = [NSTimer timerWithTimeInterval:seconds
-                                          target:timer
-                                        selector:@selector(timerDidFire)
-                                        userInfo:nil
-                                         repeats:repeats];
-    [timer.timer setFireDate:NSDate.distantFuture];
-
     // Runloop scheduling must be performed on the main thread. To prevent
     // a potential deadlock, scheduling to the main thread will be asynchronous
     // on the next main thread run loop.
     void (^mainThreadOperation)(void) = ^void(void) {
-        [NSRunLoop.mainRunLoop addTimer:timer.timer forMode:runLoopMode];
+        // Initialize the internal `NSTimer`, but set its fire date in the far future.
+        // `scheduleNow` will handle the firing of the timer.
+        let nsTimer = [NSTimer timerWithTimeInterval:seconds
+                                              target:timer
+                                            selector:@selector(timerDidFire)
+                                            userInfo:nil
+                                             repeats:repeats];
+        [nsTimer setFireDate:NSDate.distantFuture];
+        timer.timer = nsTimer
+        [NSRunLoop.mainRunLoop addTimer:nsTimer forMode:runLoopMode];
     };
 
     if ([NSThread isMainThread]) {
